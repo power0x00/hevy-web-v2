@@ -1,0 +1,28 @@
+{
+  "env": {
+    "XDG_CACHE_HOME": ".cache",
+    "npm_config_cache": ".cache/npm"
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:registry.npmjs.org)",
+      "WebFetch(domain:github.com)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm -rf /*)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowLocalBinding": true
+    }
+  }
+}
