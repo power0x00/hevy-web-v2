@@ -1,18 +1,15 @@
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useStore, Workout } from '../store'
 
 export default function Dashboard() {
-  const [workouts, setWorkouts] = useState(() => {
-    const saved = localStorage.getItem('hevy_workouts')
-    return saved ? JSON.parse(saved) : []
-  })
+  const workouts = useStore((state) => state.workouts)
+  const getWeeklyWorkouts = useStore((state) => state.getWeeklyWorkouts)
+  const getTotalWorkouts = useStore((state) => state.getTotalWorkouts)
+  const getStreak = useStore((state) => state.getStreak)
 
-  const thisWeek = workouts.filter((w: any) => {
-    const date = new Date(w.startedAt)
-    const now = new Date()
-    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
-    return date >= weekAgo
-  }).length
+  const thisWeek = getWeeklyWorkouts().length
+  const total = getTotalWorkouts()
+  const streak = getStreak()
 
   const getGreeting = () => {
     const hour = new Date().getHours()
@@ -47,11 +44,11 @@ export default function Dashboard() {
           <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">This Week</div>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow">
-          <div className="text-2xl font-bold text-green-500">{workouts.length}</div>
+          <div className="text-2xl font-bold text-green-500">{total}</div>
           <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Total</div>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow">
-          <div className="text-2xl font-bold text-purple-500">0</div>
+          <div className="text-2xl font-bold text-purple-500">{streak}</div>
           <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Streak</div>
         </div>
       </div>
@@ -64,7 +61,7 @@ export default function Dashboard() {
           </div>
         ) : (
           <div className="space-y-2">
-            {workouts.slice(0, 5).map((workout: any) => (
+            {workouts.slice(0, 5).map((workout: Workout) => (
               <div
                 key={workout.id}
                 className="bg-white dark:bg-gray-800 rounded-xl p-4 flex items-center justify-between"

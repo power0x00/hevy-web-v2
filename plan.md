@@ -31,7 +31,7 @@ A beautiful, Apple-like workout tracking web application built with React, TypeS
       "Recent workouts list",
       "Start workout button"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "feature",
@@ -95,7 +95,7 @@ A beautiful, Apple-like workout tracking web application built with React, TypeS
       "Workout actions",
       "Settings actions"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "category": "polish",
