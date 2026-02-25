@@ -5,6 +5,10 @@
   },
   "permissions": {
     "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
       "WebFetch(domain:registry.npmjs.org)",
       "WebFetch(domain:github.com)"
     ],
@@ -12,17 +16,9 @@
       "Bash(sudo *)",
       "Bash(rm -rf /*)"
     ],
-    "ask": [
-      "Bash(git push:*)"
-    ],
     "defaultMode": "acceptEdits"
   },
   "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
-    "network": {
-      "allowLocalBinding": true
-    }
+    "enabled": false
   }
 }
